@@ -117,9 +117,9 @@ class Wp_Ali_Info_Admin {
 		require_once( dirname( __FILE__ ) . '/class-aliexpress-client.php' );
 		$aliexpress_client = new AliExpressClient();
 
-		$name = $_POST['product'];
+		$productId = $_POST['product'];
 
-		echo json_encode($aliexpress_client->searchProducts());
+		echo json_encode($aliexpress_client->searchProductByID($productId));
 
 		 //encode into JSON format and output
 		die(); //stop "0" from being output

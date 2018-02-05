@@ -60,7 +60,7 @@ class product_post_type {
                 type="text"
                 placeholder="<?php _e( "AliExpress Product ID", 'wp-ali-info' ); ?>"
                 id="post_product"
-                value=""
+                value="32774104722"
                 size="16" />
             <a class="button" id="wp-ali-info-search-button">
                 <span class="dashicons dashicons-search"></span>

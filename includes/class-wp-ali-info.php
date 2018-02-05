@@ -99,6 +99,9 @@ class Wp_Ali_Info {
 	 */
 	private function load_dependencies() {
 
+		// composer
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . '/vendor/autoload.php' ;
+
 		/**
 		 * The class responsible for orchestrating the actions and filters of the
 		 * core plugin.

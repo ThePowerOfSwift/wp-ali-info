@@ -51,6 +51,7 @@ class Wp_Ali_Info_Admin {
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
+		$this->create_product_post_type();
 
 	}
 
@@ -98,6 +99,14 @@ class Wp_Ali_Info_Admin {
 
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/wp-ali-info-admin.js', array( 'jquery' ), $this->version, false );
 
+	}
+
+
+	public function create_product_post_type(){
+		/** Loads the movie taxonomy class file. */
+		require_once( dirname( __FILE__ ) . '/class-product-post-type.php' );
+		$product = new product_post_type();
+		$product->init();
 	}
 
 }

@@ -4,52 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "2bf744ab5e8b52a8be37f51806d84a26",
+    "content-hash": "95ce639c36f3b2e30c5672cb5e5f14c2",
     "packages": [
-        {
-            "name": "clchangnet/aliexapi",
-            "version": "1.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/clchangnet/aliexapi.git",
-                "reference": "6a4b4d4e9e65fffd29848c87b24ed4d74dd5f4ea"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/clchangnet/aliexapi/zipball/6a4b4d4e9e65fffd29848c87b24ed4d74dd5f4ea",
-                "reference": "6a4b4d4e9e65fffd29848c87b24ed4d74dd5f4ea",
-                "shasum": ""
-            },
-            "require-dev": {
-                "phpunit/phpunit": "4.7.*"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "AliexApi\\": "src/AliexIO"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "Apache-2.0"
-            ],
-            "authors": [
-                {
-                    "name": "Allan Chang",
-                    "email": "allan@clchang.net"
-                }
-            ],
-            "description": "AliExpress Affiliate API PHP Library",
-            "homepage": "https://github.com/clchangnet/aliexapi",
-            "keywords": [
-                "Affiliate Products",
-                "Aliexpress",
-                "Product Advertising",
-                "rest",
-                "soap"
-            ],
-            "time": "2016-04-17T02:17:42+00:00"
-        },
         {
             "name": "guzzlehttp/guzzle",
             "version": "6.3.0",
@@ -230,6 +186,47 @@
                 "url"
             ],
             "time": "2017-03-20T17:10:46+00:00"
+        },
+        {
+            "name": "nnnick/chartjs",
+            "version": "v2.7.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/chartjs/Chart.js.git",
+                "reference": "0fead21939b92c15093c1b7d5ee2627fb5900fff"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/chartjs/Chart.js/zipball/0fead21939b92c15093c1b7d5ee2627fb5900fff",
+                "reference": "0fead21939b92c15093c1b7d5ee2627fb5900fff",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "release/2.0": "v2.0-dev"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "NICK DOWNIE",
+                    "email": "hello@nickdownie.com"
+                }
+            ],
+            "description": "Simple HTML5 charts using the canvas element.",
+            "homepage": "http://www.chartjs.org/",
+            "keywords": [
+                "JS",
+                "chart"
+            ],
+            "time": "2017-10-28T15:01:52+00:00"
         },
         {
             "name": "psr/http-message",

@@ -23,10 +23,6 @@ class ComposerStaticInit6118da8ed06f883b9788938255cc6af2
             'GuzzleHttp\\Promise\\' => 19,
             'GuzzleHttp\\' => 11,
         ),
-        'A' => 
-        array (
-            'AliexApi\\' => 9,
-        ),
     );
 
     public static $prefixDirsPsr4 = array (
@@ -45,10 +41,6 @@ class ComposerStaticInit6118da8ed06f883b9788938255cc6af2
         'GuzzleHttp\\' => 
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/guzzle/src',
-        ),
-        'AliexApi\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/clchangnet/aliexapi/src/AliexIO',
         ),
     );
 

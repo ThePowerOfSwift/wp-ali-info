@@ -1,6 +1,6 @@
 {
     "require": {
         "guzzlehttp/guzzle": "^6.3",
-        "clchangnet/aliexapi": "^1.1"
+        "nnnick/chartjs": "^2.7"
     }
 }

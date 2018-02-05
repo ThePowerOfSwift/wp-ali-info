@@ -2,3 +2,83 @@
  * All of the CSS for your admin-specific functionality should be
  * included in this file.
  */
+
+ .wp-ali-search-field{
+    width: 250px;
+    float: left;
+    height: 28px;
+    margin: 0 4px 10px 0;
+ }
+
+ .wp-ali-info-search-label{
+    line-height: 3em;
+ }
+
+ .wp-ali-info-results{
+    border: 1px solid #ddd;
+    background-color: #fdfdfd;
+    width: 100%;
+    padding: .9em;
+    min-height: 40px;
+    box-sizing: border-box;
+    text-align: center;
+    margin-bottom: 10px;
+ }
+
+ .wp-ali-info-results {
+     display:  none;
+ }
+
+.wp-ali-info-table{
+    border: 1px solid #ddd;
+    width: 100%;
+    max-width: 500px;
+    display:  none;
+}
+.wp-ali-info-table th, .wp-ali-info-table td {
+    text-align: left;
+    padding: 10px;
+}
+
+.wp-ali-info-table th {
+    background-color: #f9f9f9;
+}
+
+.wp-ali-info-tags > ul > li {
+    font-size: 13px;
+    line-height: 1.8em;
+    cursor: default;
+    max-width: 100%;
+    overflow: hidden;
+    font-size: 12px;
+}
+.wp-ali-info-delete{
+    width: 24px;
+    height: 24px;
+    border: none;
+    padding: 0;
+    background: 0 0;
+    cursor: pointer;
+    text-indent: 0;
+    color: #0073aa;
+}
+.wp-ali-info-delete:hover{
+    color: red;
+}
+.wp-ali-info-delete > .dashicons{
+    font-size: 14px;
+
+}
+
+#wp-ali-info-search-button {
+    padding: 0 13px 0px 5px;
+}
+
+#wp-ali-info-search-button > .dashicons {
+    font-size: 16px;
+    line-height: 26px;
+    height: 28px;
+    margin: 0;
+    margin-right: 5px;
+
+}

@@ -13,6 +13,7 @@
  * @author     Bob van Donselaar
  */
 
+require_once('class-aliexpress-client.php');
 
 class product_post_type {
 
@@ -45,29 +46,28 @@ class product_post_type {
 
 
     public function add_products_box() {
-        add_meta_box('product_box_ID', __('Products'), array( $this, 'product_box_styling' ), 'products', 'side', 'core');
+        add_meta_box('product_box_ID', __('AliExpress Product Information'), array( $this, 'product_box_styling' ), 'products', 'side', 'core');
     }
 
     // This function gets called in edit-form-advanced.php
     public function product_box_styling($post) {
         ?>
         <p>
-        <label class="movie-info-search-label" for="post_product"><?php _e( "Search for a Product:", 'wp-ali-info' ); ?></label>
-        <br />
-        <input
-            class="movie-info-search-field"
-            type="text"
-            placeholder="<?php _e( "AliExpress Product ID", 'wp-ali-info' ); ?>"
-            id="post_product"
-            value=""
-            size="16" />
-        <a class="button" id="wp-ali-info-search-button">
-            <span class="dashicons dashicons-search"></span> <?php _e( "Search", 'wp-ali-info' ); ?>
-        </a>
-
+            <label class="movie-info-search-label" for="post_product"><?php _e( "Search for a Product:", 'wp-ali-info' ); ?></label>
+            <br />
+            <input
+                class="wp-ali-info-search-field"
+                type="text"
+                placeholder="<?php _e( "AliExpress Product ID", 'wp-ali-info' ); ?>"
+                id="post_product"
+                value=""
+                size="16" />
+            <a class="button" id="wp-ali-info-search-button">
+                <span class="dashicons dashicons-search"></span>
+                <?php _e( "Search", 'wp-ali-info' ); ?>
+            </a>
         </p>
         <?php
-
    }
 
 

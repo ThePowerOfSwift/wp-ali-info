@@ -103,10 +103,26 @@ class Wp_Ali_Info_Admin {
 
 
 	public function create_product_post_type(){
-		/** Loads the movie taxonomy class file. */
+
+		/** Loads the products post type class file. */
 		require_once( dirname( __FILE__ ) . '/class-product-post-type.php' );
 		$product = new product_post_type();
 		$product->init();
+
+	}
+
+	public function ajax_product_search() {
+
+
+		require_once( dirname( __FILE__ ) . '/class-aliexpress-client.php' );
+		$aliexpress_client = new AliExpressClient();
+
+		$name = $_POST['product'];
+
+		echo json_encode($aliexpress_client->searchProducts());
+
+		 //encode into JSON format and output
+		die(); //stop "0" from being output
 	}
 
 }

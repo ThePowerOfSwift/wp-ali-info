@@ -47,13 +47,11 @@
 				data: request,
 				success:function(data) {
 					if(data && data == "") {
-						$( ".wp-ali-info-table" ).append('<tr><td>No Results.</td></tr>');
-						console.log(data);
+						// handle no results.
 					}
 					else
-					console.log(data);
+					printProduct(data);
 					$(".searching").remove();
-					$( ".wp-ali-info-table" ).show();
 					$("#wp-ali-info-search-button").removeClass( "disabled" );
 					$("#wp-ali-info-search-button").html('<span class="dashicons dashicons-search"></span>Search');
 
@@ -63,6 +61,19 @@
 				}
 			});
 		});
+
+
+		function printProduct(data){
+			$("input[name='product-id']" ).val(data['productId']);
+			$("input[name='product-name']" ).val(data['productTitle']);
+			$("input[name='product-price']" ).val(data['localPrice']);
+			$("input[name='product-discount']" ).val(data['discount']);
+			$("input[name='product-volume']" ).val(data['volume']);
+			$("input[name='product-affiliate-link']" ).val(data['affiliate_link']);
+			$("input[name='product-product-link']" ).val(data['productUrl']);
+			$("input[name='product-short-affiliate-link']" ).val(data['shortUrl']);
+		}
+
 	});
 
 

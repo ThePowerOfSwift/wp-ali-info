@@ -63,104 +63,110 @@ class product_post_type {
         global $post;
 
         ?>
-        <p>
-            <label class="movie-info-search-label" for="post_product"><?php _e( "Search for a Product:", 'wp-ali-info' ); ?></label>
-            <br />
-            <input
-                class="wp-ali-info-search-field"
-                type="text"
-                placeholder="<?php _e( "AliExpress Product ID", 'wp-ali-info' ); ?>"
-                id="post_product"
-                value="32774104722"
-                size="16" />
-            <a class="button" id="wp-ali-info-search-button">
-                <span class="dashicons dashicons-search"></span>
-                <?php _e( "Search", 'wp-ali-info' ); ?>
-            </a>
-        </p>
-        <!--- Product ID -->
-        <div style="margin-top: 10px">
-            <label for="product-id" style="display: inline-block; width: 20%!important;
-				 margin-right: 20px; vertical-align: top;"><b>Product ID </b></label>
-            <input name="product-id" type="text"
-                value="<?php echo get_post_meta($post->ID, "product-id", true); ?>"
-                style="display: inline-block; width: 30%; margin-right: 20px;" />
-            <a href="#">link to product image</a>
-        </div>
-        <!--- Product Title -->
-        <div style="margin-top: 10px">
-            <label for="product-name" style="display: inline-block; width: 20%!important;
-				 margin-right: 20px; vertical-align: top;"><b>Product Name </b></label>
-            <input name="product-name" type="text"
-            value="<?php echo get_post_meta($post->ID, "product-name", true); ?>"
-                style="display: inline-block; width: 60%;" />
-        </div>
-        <!--- Product Description -->
-        <div style="margin-top: 10px">
-            <label for="product-description" style="display: inline-block; width: 20%!important;
-				 margin-right: 20px; vertical-align: top;"><b>Description </b></label>
-            <textarea rows=4 name="product-description" type="text" style="display: inline-block; width: 60%;" ><?php
-                echo get_post_meta($post->ID, "product-description", true);
-            ?></textarea>
-        </div>
-        <!--- Price -->
-        <div style="margin-top: 10px">
-            <label for="product-price" style="display: inline-block; width: 20%!important;
-            margin-right: 20px; vertical-align: top;"><b>Price </b></label>
-            <input name="product-price" type="text"
-                value="<?php echo get_post_meta($post->ID, "product-price", true); ?>"
-                style="display: inline-block; width: 30%;" />
-        </div>
-        <!--- Discount -->
-        <div style="margin-top: 10px">
-            <label for="product-discount" style="display: inline-block; width: 20%!important;
-            margin-right: 20px; vertical-align: top;"><b>Discount </b></label>
-            <input name="product-discount" type="text"
-            value="<?php echo get_post_meta($post->ID, "product-discount", true); ?>"
-                style="display: inline-block; width: 30%;" />
-        </div>
-        <!--- Volume (Sales in past 24hr) -->
-        <div style="margin-top: 10px">
-            <label for="product-volume" style="display: inline-block; width: 20%!important;
-            margin-right: 20px; vertical-align: top;"><b>Volume (Sales in past 24hr) </b></label>
-            <input name="product-volume" type="text"
-                value="<?php echo get_post_meta($post->ID, "product-volume", true); ?>"
-                style="display: inline-block; width: 30%;" />
-        </div>
-        <!--- Affiliate Link -->
-        <div style="margin-top: 10px">
-            <label for="product-affiliate-link" style="display: inline-block; width: 20%!important;
-            margin-right: 20px; vertical-align: top;"><b>Affiliate Link </b></label>
-            <input name="product-affiliate-link" type="text"
-            value="<?php echo get_post_meta($post->ID, "product-affiliate-link", true); ?>"
-                style="display: inline-block; width: 60%;" />
-        </div>
-        <!--- Product Link -->
-        <div style="margin-top: 10px">
-            <label for="product-product-link" style="display: inline-block; width: 20%!important;
-            margin-right: 20px; vertical-align: top;"><b>Product Link </b></label>
-            <input name="product-product-link" type="text"
-            value="<?php echo get_post_meta($post->ID, "product-product-link", true); ?>"
-                style="display: inline-block; width: 60%;" />
-        </div>
-        <!--- Short Affiliate Link -->
-        <div style="margin-top: 10px">
-            <label for="product-short-affiliate-link" style="display: inline-block; width: 20%!important;
-            margin-right: 20px; vertical-align: top;"><b>Short Affiliate Link </b></label>
-            <input name="product-short-affiliate-link" type="text"
-            value="<?php echo get_post_meta($post->ID, "product-short-affiliate-link", true); ?>"
-                style="display: inline-block; width: 60%;" />
-        </div>
-        <!--- Price History Chart -->
-        <hr />
-        <div style="margin-top: 10px">
-            <label for="price-history-range" style="display: inline-block;
-            margin-right: 20px; ">Show price history for:</label>
-            <select name="price-history-range" id="price-history-range">
-                <option value="30-days">Last 30 days</option>
-                <option value="3-months">Last 3 months</option>
-                <option value="12-months">Last 12 months</option>
-            </select>
+        <div id="wp-ali-info-product-data">
+            <p>
+                <label class="movie-info-search-label" for="post_product"><?php _e( "Fetch product data by ID:", 'wp-ali-info' ); ?></label>
+                <br />
+                <input
+                    class="wp-ali-info-search-field"
+                    type="text"
+                    placeholder="<?php _e( "AliExpress Product ID", 'wp-ali-info' ); ?>"
+                    id="post_product"
+                    value="32774104722"
+                    size="16" />
+                <a class="button" id="wp-ali-info-search-button">
+                    <span class="dashicons dashicons-download"></span>
+                    <?php _e( "Fetch", 'wp-ali-info' ); ?>
+                </a>
+                <a class="button" id="wp-ali-info-delete-button" style="display: none">
+                    <?php _e( "Delete", 'wp-ali-info' ); ?>
+                </a>
+            </p>
+            <!--- Product ID -->
+            <div style="margin-top: 10px">
+                <label for="product-id" style="display: inline-block; width: 20%!important;
+                    margin-right: 20px; vertical-align: top;"><b>Product ID </b></label>
+                <input name="product-id" type="text"
+                    disabled
+                    value="<?php echo get_post_meta($post->ID, "product-id", true); ?>"
+                    style="display: inline-block; width: 30%; margin-right: 20px;" />
+                <a href="#">link to product image</a>
+            </div>
+            <!--- Product Title -->
+            <div style="margin-top: 10px">
+                <label for="product-name" style="display: inline-block; width: 20%!important;
+                    margin-right: 20px; vertical-align: top;"><b>Product Name </b></label>
+                <input name="product-name" type="text"
+                value="<?php echo get_post_meta($post->ID, "product-name", true); ?>"
+                    style="display: inline-block; width: 60%;" />
+            </div>
+            <!--- Product Description -->
+            <div style="margin-top: 10px">
+                <label for="product-description" style="display: inline-block; width: 20%!important;
+                    margin-right: 20px; vertical-align: top;"><b>Description </b></label>
+                <textarea rows=4 name="product-description" type="text" style="display: inline-block; width: 60%;" ><?php
+                    echo get_post_meta($post->ID, "product-description", true);
+                ?></textarea>
+            </div>
+            <!--- Price -->
+            <div style="margin-top: 10px">
+                <label for="product-price" style="display: inline-block; width: 20%!important;
+                margin-right: 20px; vertical-align: top;"><b>Price </b></label>
+                <input name="product-price" type="text"
+                    value="<?php echo get_post_meta($post->ID, "product-price", true); ?>"
+                    style="display: inline-block; width: 30%;" />
+            </div>
+            <!--- Discount -->
+            <div style="margin-top: 10px">
+                <label for="product-discount" style="display: inline-block; width: 20%!important;
+                margin-right: 20px; vertical-align: top;"><b>Discount </b></label>
+                <input name="product-discount" type="text"
+                value="<?php echo get_post_meta($post->ID, "product-discount", true); ?>"
+                    style="display: inline-block; width: 30%;" />
+            </div>
+            <!--- Volume (Sales in past 24hr) -->
+            <div style="margin-top: 10px">
+                <label for="product-volume" style="display: inline-block; width: 20%!important;
+                margin-right: 20px; vertical-align: top;"><b>Volume (Sales in past 24hr) </b></label>
+                <input name="product-volume" type="text"
+                    value="<?php echo get_post_meta($post->ID, "product-volume", true); ?>"
+                    style="display: inline-block; width: 30%;" />
+            </div>
+            <!--- Affiliate Link -->
+            <div style="margin-top: 10px">
+                <label for="product-affiliate-link" style="display: inline-block; width: 20%!important;
+                margin-right: 20px; vertical-align: top;"><b>Affiliate Link </b></label>
+                <input name="product-affiliate-link" type="text"
+                value="<?php echo get_post_meta($post->ID, "product-affiliate-link", true); ?>"
+                    style="display: inline-block; width: 60%;" />
+            </div>
+            <!--- Product Link -->
+            <div style="margin-top: 10px">
+                <label for="product-product-link" style="display: inline-block; width: 20%!important;
+                margin-right: 20px; vertical-align: top;"><b>Product Link </b></label>
+                <input name="product-product-link" type="text"
+                value="<?php echo get_post_meta($post->ID, "product-product-link", true); ?>"
+                    style="display: inline-block; width: 60%;" />
+            </div>
+            <!--- Short Affiliate Link -->
+            <div style="margin-top: 10px">
+                <label for="product-short-affiliate-link" style="display: inline-block; width: 20%!important;
+                margin-right: 20px; vertical-align: top;"><b>Short Affiliate Link </b></label>
+                <input name="product-short-affiliate-link" type="text" disabled
+                value="<?php echo get_post_meta($post->ID, "product-short-affiliate-link", true); ?>"
+                    style="display: inline-block; width: 60%;" />
+            </div>
+            <!--- Price History Chart -->
+            <hr />
+            <div style="margin-top: 10px">
+                <label for="price-history-range" style="display: inline-block;
+                margin-right: 20px; ">Show price history for:</label>
+                <select name="price-history-range" id="price-history-range">
+                    <option value="30-days">Last 30 days</option>
+                    <option value="3-months">Last 3 months</option>
+                    <option value="12-months">Last 12 months</option>
+                </select>
+            </div>
         </div>
         <canvas id="priceChart"></canvas>
         <?php

@@ -34,9 +34,9 @@
 		$("#wp-ali-info-search-button").click(function (e) {
 			e.preventDefault();
 			$(this).addClass( "disabled" );
-			$(this).html('<span class="dashicons dashicons-search"></span>Searching...');
+			$(this).html('<span class="dashicons dashicons-download"></span>Fetching...');
 			$(".wp-ali-info-table td").parent().remove();
-			$( ".wp-ali-info-table" ).before('<span class="searching">Searching...</span>');
+			$( ".wp-ali-info-table" ).before('<span class="searching">Fetching...</span>');
 			var product = $.trim($('#post_product').val());
 			var request = 'action=product_search&product='+product;
 
@@ -51,16 +51,22 @@
 					}
 					else
 					printProduct(data);
-					$(".searching").remove();
-					$("#wp-ali-info-search-button").removeClass( "disabled" );
-					$("#wp-ali-info-search-button").html('<span class="dashicons dashicons-search"></span>Search');
+					$("#wp-ali-info-search-button").hide();
+					$("#wp-ali-info-delete-button").show();
+					$(".wp-ali-info-search-field").prop('disabled', true);
 
 				  },
 				error: function (xhr, ajaxOptions, thrownError) {
-					$(".searching").remove();
+					refreshSearchButton();
 				}
 			});
 		});
+
+		function refreshSearchButton(){
+			$(".searching").remove();
+			$("#wp-ali-info-search-button").removeClass( "disabled" );
+			$("#wp-ali-info-search-button").html('<span class="dashicons dashicons-download"></span>Fetch');
+		}
 
 		function printProduct(data){
 			$("input[name='product-id']" ).val(data['productId']);
@@ -85,6 +91,16 @@
 			chart = new Chart(ctx, params);
 		}
 
+		$('#wp-ali-info-delete-button').click(function () {
+			if(confirm("Are you sure you want to delete all data?")){
+				$('#wp-ali-info-product-data input[type="text"]').val('');
+				$('#wp-ali-info-product-data textarea').val('');
+				refreshSearchButton();
+				$("#wp-ali-info-search-button").show();
+				$("#wp-ali-info-delete-button").hide();
+				$(".wp-ali-info-search-field").prop('disabled', false);
+			}
+		});
 
 	});
 

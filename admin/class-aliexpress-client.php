@@ -79,6 +79,20 @@ class AliExpressClient
         return  $this->createCloakLink($product_details);
     }
 
+    public function getProductPrice($productId){
+
+        $url = 'api.getPromotionProductDetail';
+        $currency = 'EUR';
+        $fields = 'productId,localPrice';
+        $uri = $url . '/' .$this->ApiKey.'?fields=' . $fields
+                . '&localCurrency=' . $currency
+                . '&productId=' . $productId;
+
+
+        $response = $this->client->request('POST', $uri);
+        return json_decode($response->getBody()->getContents())->result->localPrice;
+
+    }
 
 
 

@@ -87,7 +87,7 @@ class product_post_type {
                 <label for="product-id" style="display: inline-block; width: 20%!important;
                     margin-right: 20px; vertical-align: top;"><b>Product ID </b></label>
                 <input name="product-id" type="text"
-                    disabled
+
                     value="<?php echo get_post_meta($post->ID, "product-id", true); ?>"
                     style="display: inline-block; width: 30%; margin-right: 20px;" />
                 <a href="#">link to product image</a>
@@ -152,7 +152,7 @@ class product_post_type {
             <div style="margin-top: 10px">
                 <label for="product-short-affiliate-link" style="display: inline-block; width: 20%!important;
                 margin-right: 20px; vertical-align: top;"><b>Short Affiliate Link </b></label>
-                <input name="product-short-affiliate-link" type="text" disabled
+                <input name="product-short-affiliate-link" type="text"
                 value="<?php echo get_post_meta($post->ID, "product-short-affiliate-link", true); ?>"
                     style="display: inline-block; width: 60%;" />
             </div>
@@ -172,7 +172,7 @@ class product_post_type {
         <?php
     }
 
-    function save_products_box($post_id, $post, $update ) {
+    function save_products_box($post_id ) {
 
         if (!isset($_POST["meta-box-nonce"]) || !wp_verify_nonce($_POST["meta-box-nonce"], basename(__FILE__)))
         return $post_id;

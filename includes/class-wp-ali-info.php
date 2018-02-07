@@ -163,6 +163,9 @@ class Wp_Ali_Info {
 		$this->loader->add_action('wp_ajax_nopriv_product_search', $plugin_admin, 'ajax_product_search');
 		$this->loader->add_action('wp_ajax_product_search', $plugin_admin, 'ajax_product_search');
 
+		$this->loader->add_action('init', $plugin_admin, 'create_wp_ali_product_prices_schedule');
+		$this->loader->add_action('wp_ali_product_prices_cron_job', $plugin_admin, 'wp_ali_product_prices_cron_function');
+
 	}
 
 	/**

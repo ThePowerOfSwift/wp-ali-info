@@ -20,6 +20,9 @@
  * @subpackage Wp_Ali_Info/admin
  * @author     Bob van Donselaar <b.vandonselaar@student.fontys.nl>
  */
+
+require_once( dirname( __FILE__ ) . '/class-aliexpress-client.php' );
+
 class Wp_Ali_Info_Admin {
 
 	/**
@@ -114,8 +117,6 @@ class Wp_Ali_Info_Admin {
 
 	public function ajax_product_search() {
 
-
-		require_once( dirname( __FILE__ ) . '/class-aliexpress-client.php' );
 		$aliexpress_client = new AliExpressClient();
 
 		$productId = $_POST['product'];
@@ -125,5 +126,34 @@ class Wp_Ali_Info_Admin {
 		 //encode into JSON format and output
 		die(); //stop "0" from being output
 	}
+
+
+
+	function wp_ali_product_prices_cron_function(){
+		//send email
+		wp_mail('bobvandonselaar@gmail.com', 'Clivern', 'Well Done!');
+		// Update post 37
+		$this->update_product_prices();
+	}
+
+	function create_wp_ali_product_prices_schedule(){
+		//check if event scheduled before
+		if(!wp_next_scheduled('wp_ali_product_prices_cron_job'))
+		//shedule event to run after every hour
+		wp_schedule_event (time(), 'daily', 'wp_ali_product_prices_cron_job');
+	}
+
+	function update_product_prices(){
+
+		$aliexpress_client = new AliExpressClient();
+
+		$products = get_posts(array('post_type' => 'products'));
+		foreach($products as $product){
+			$productId = get_post_meta($product->ID, 'product-id', true);
+			update_post_meta( $product->ID, 'product-price',
+				$aliexpress_client->getProductPrice($productId));
+		}
+	}
+
 
 }

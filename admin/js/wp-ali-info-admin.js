@@ -47,14 +47,17 @@
 				data: request,
 				success:function(data) {
 					if(data && data == "") {
-						// handle no results.
+						refreshSearchButton();
 					}
-					else
-					printProduct(data);
-					$("#wp-ali-info-search-button").hide();
-					$("#wp-ali-info-delete-button").show();
-					$(".wp-ali-info-search-field").prop('disabled', true);
-
+					if(data['productId'] ==  product){
+						printProduct(data);
+						$("#wp-ali-info-search-button").hide();
+						$("#wp-ali-info-delete-button").show();
+						$(".wp-ali-info-search-field").prop('disabled', true);
+					} else {
+						refreshSearchButton();
+						$("input[name='product-id']" ).val('no results.');
+					}
 				  },
 				error: function (xhr, ajaxOptions, thrownError) {
 					refreshSearchButton();
@@ -104,15 +107,9 @@
 
 	});
 
-
-
-
 })( jQuery );
 
-
-
 var d = [];
-
 
   function getPreviousMonths(numberOfmonths) {
 	  var months = [];
@@ -279,6 +276,4 @@ var d = [];
 
 };
 
-
-
-  var chart = new Chart(ctx, dataMap['30-days']);
+var chart = new Chart(ctx, dataMap['30-days']);

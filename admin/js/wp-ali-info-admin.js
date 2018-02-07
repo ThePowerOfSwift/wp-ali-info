@@ -62,7 +62,6 @@
 			});
 		});
 
-
 		function printProduct(data){
 			$("input[name='product-id']" ).val(data['productId']);
 			$("input[name='product-name']" ).val(data['productTitle']);
@@ -74,7 +73,196 @@
 			$("input[name='product-short-affiliate-link']" ).val(data['shortUrl']);
 		}
 
+
+		$('#price-history-range').on('change', updateChart);
+
+		function updateChart(){
+			var newChart = $("#price-history-range").val();
+
+			console.log('dropdown test');
+			if(chart){chart.destroy();}
+			var params = dataMap[newChart]
+			chart = new Chart(ctx, params);
+		}
+
+
 	});
 
 
+
+
 })( jQuery );
+
+
+
+var d = [];
+
+
+  function getPreviousMonths(numberOfmonths) {
+	  var months = [];
+
+	  for (i = 0; i < numberOfmonths; i++) {
+		  var month = moment().subtract(i, 'months').format('MMMM Y');
+		  months.push(month);
+	  }
+	  return months.reverse();
+  }
+
+  function getPreviousDays(numberOfDays) {
+	var days = [];
+
+	for (i = 0; i < numberOfDays; i++) {
+		var day = moment().subtract(i, 'day').format("LL");
+		days.push(day);
+	}
+	return days.reverse();
+  }
+
+  function getPreviousWeeks(numberOfWeeks) {
+	var weeks = [];
+
+	for (i = 0; i < numberOfWeeks; i++) {
+		var week = moment().subtract(i, 'week').format('LLLL');
+		weeks.push(week);
+	}
+	return weeks.reverse();
+  }
+
+  var dateFormat = 'DD\/MM\/YYYY';
+  var data = [];
+  for (var i in d) {
+		date = moment(d[i].date, dateFormat);
+	  data.push({
+		t: date.valueOf(),
+		y: d[i].price
+	  });
+  }
+  console.log(data)
+
+  var ctx = document.getElementById("priceChart").getContext("2d");
+  console.log(getPreviousDays(30));
+
+  var dataMap = {
+	'30-days': {
+		type: 'bar',
+		data: {
+			labels: getPreviousDays(30),
+			datasets: [{
+				label: "Price trend",
+				data: data,
+				type: 'line',
+				pointRadius: 0,
+				fill: false,
+				borderColor: 'red',
+				lineTension: 0,
+				borderWidth: 2
+			}]
+		},
+		options: {
+			scales: {
+				xAxes: [{
+				type: 'time',
+				distribution: 'linear',
+				ticks: {
+					source: 'labels'
+				},
+				time: {
+				unit: 'day',
+				unitStepSize: 1
+				}
+				}],
+				yAxes: [{
+				scaleLabel: {
+					display: true,
+					labelString: 'price'
+				}
+				}]
+			}
+		}
+	},
+	'3-months': {
+		type: 'bar',
+		data: {
+			labels: getPreviousWeeks(12),
+			datasets: [{
+				label: "Price trend",
+				data: data,
+				type: 'line',
+				pointRadius: 0,
+				fill: false,
+				borderColor: 'red',
+				lineTension: 0,
+				borderWidth: 2
+			}]
+		},
+		options: {
+			scales: {
+				xAxes: [{
+				type: 'time',
+				distribution: 'linear',
+				ticks: {
+					source: 'labels'
+				},
+				time: {
+				unit: 'month',
+				unitStepSize: 1,
+				displayFormats: {
+					'month': 'MMM'
+					}
+				}
+				}],
+				yAxes: [{
+				scaleLabel: {
+					display: true,
+					labelString: 'price'
+				}
+				}]
+			}
+		}
+	},
+	'12-months': {
+		type: 'bar',
+		data: {
+			labels: getPreviousMonths(12),
+			datasets: [{
+				label: "Price trend",
+				data: data,
+				type: 'line',
+				pointRadius: 0,
+				fill: false,
+				borderColor: 'red',
+				lineTension: 0,
+				borderWidth: 2
+			}]
+		},
+		options: {
+			scales: {
+				xAxes: [{
+				type: 'time',
+				distribution: 'linear',
+				ticks: {
+					source: 'labels'
+				},
+				time: {
+				unit: 'month',
+				unitStepSize: 1,
+				displayFormats: {
+					'month': 'MMM'
+					}
+				}
+				}],
+				yAxes: [{
+				scaleLabel: {
+					display: true,
+					labelString: 'price'
+				}
+				}]
+			}
+		}
+	}
+
+};
+
+
+
+  var chart = new Chart(ctx, dataMap['30-days']);

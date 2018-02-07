@@ -14,6 +14,7 @@
  */
 
 require_once('class-aliexpress-client.php');
+use nnnick\chartjs;
 
 class product_post_type {
 
@@ -143,14 +144,25 @@ class product_post_type {
                 style="display: inline-block; width: 60%;" />
         </div>
         <!--- Short Affiliate Link -->
-                <div style="margin-top: 10px">
+        <div style="margin-top: 10px">
             <label for="product-short-affiliate-link" style="display: inline-block; width: 20%!important;
             margin-right: 20px; vertical-align: top;"><b>Short Affiliate Link </b></label>
             <input name="product-short-affiliate-link" type="text"
             value="<?php echo get_post_meta($post->ID, "product-short-affiliate-link", true); ?>"
                 style="display: inline-block; width: 60%;" />
         </div>
-
+        <!--- Price History Chart -->
+        <hr />
+        <div style="margin-top: 10px">
+            <label for="price-history-range" style="display: inline-block;
+            margin-right: 20px; ">Show price history for:</label>
+            <select name="price-history-range" id="price-history-range">
+                <option value="30-days">Last 30 days</option>
+                <option value="3-months">Last 3 months</option>
+                <option value="12-months">Last 12 months</option>
+            </select>
+        </div>
+        <canvas id="priceChart"></canvas>
         <?php
     }
 
